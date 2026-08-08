@@ -1,10 +1,11 @@
+import os
 from pathlib import Path
 from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    database_url: str = "sqlite:///./question_papers.db"
-    storage_path: Path = Path("./storage")
+    database_url: str = "sqlite:////tmp/question_papers.db" if os.getenv("VERCEL") else "sqlite:///./question_papers.db"
+    storage_path: Path = Path("/tmp/paper-storage") if os.getenv("VERCEL") else Path("./storage")
     max_upload_mb: int = 500
 
     class Config:
