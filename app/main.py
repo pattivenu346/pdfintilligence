@@ -1,7 +1,7 @@
 import hashlib, os, shutil, uuid
 from pathlib import Path
 from fastapi import Depends, FastAPI, File, HTTPException, Query, UploadFile
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import func, or_
 from sqlalchemy.orm import Session
@@ -13,6 +13,11 @@ from .services.extractor import extract_papers, write_split
 Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Question Paper Intelligence API", version="1.0.0")
 app.mount("/app", StaticFiles(directory=Path(__file__).parent / "static", html=True), name="app")
+
+
+@app.get("/", include_in_schema=False)
+def home():
+    return RedirectResponse(url="/app/")
 
 def serialize(p: Paper):
     return {"id":p.id,"title":p.title,"subject":p.subject,"courseCode":p.course_code,"department":p.department,"semester":p.semester,"year":p.year,"month":p.month,"marks":p.marks,"duration":p.duration,"pageCount":p.page_count,"createdAt":p.created_at.isoformat()}
