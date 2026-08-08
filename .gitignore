@@ -1,0 +1,18 @@
+# Runtime data and uploads — never commit student papers or local indexes
+storage/
+local-papers.json
+question_papers.db
+fallback-data.json
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Test fixtures and local verification downloads
+test-paper*.pdf
+delete-verification.pdf
+verification-download.pdf
+
+# Local configuration
+.env
