@@ -14,5 +14,5 @@ test-paper*.pdf
 delete-verification.pdf
 verification-download.pdf
 
-# Local configuration
+
 .env
