@@ -4,7 +4,7 @@ local-papers.json
 question_papers.db
 fallback-data.json
 
-# Python
+# venu
 .venv/
 __pycache__/
 *.py[cod]
